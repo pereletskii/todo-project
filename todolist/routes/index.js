@@ -7,6 +7,10 @@ function baseInfo(req, res) {
     res.send(`${req.method} response`);
 }
 
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
+})
+
 app.route('/')
     .get((req, res) => {
         baseInfo(req, res);
@@ -14,7 +18,3 @@ app.route('/')
     .post((req, res) => {
         baseInfo(req, res);
     })
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-})
