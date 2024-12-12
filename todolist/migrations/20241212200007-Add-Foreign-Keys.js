@@ -6,6 +6,7 @@ module.exports = {
     await queryInterface.addConstraint('lists', {
       type: 'foreign key',
       name: 'FK_lists_users',
+      fields: ['owner_id'],
       references: {
         table: 'users',
         field: 'id'
@@ -16,6 +17,7 @@ module.exports = {
     await queryInterface.addConstraint('tasks', {
       type: 'foreign key',
       name: 'FK_tasks_lists',
+      fields: ['list_id'],
       references: {
         table: 'lists',
         field: 'id'
