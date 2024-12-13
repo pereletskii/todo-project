@@ -1,5 +1,5 @@
 .env
-todolist/config/
+env_config.json
 # Logs
 logs
 *.log
