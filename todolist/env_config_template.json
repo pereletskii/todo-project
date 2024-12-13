@@ -12,5 +12,6 @@
   "production": {
 
   },
-  "port": "[port]"
+  "port": "[port]",
+  "jwt_access_token": "[access token]"
 }

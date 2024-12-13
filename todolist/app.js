@@ -5,8 +5,8 @@ const port = require('./env_config.json').port;
 
 app.use(bodyParser.json());
 
-const registrationRouter = require('./routers/registrationRouter');
-app.use('/registration', registrationRouter);
+const allAuthRouter = require('./routers/allAuthRouter');
+app.use('/enter', allAuthRouter);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
