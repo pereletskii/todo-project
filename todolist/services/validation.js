@@ -1,3 +1,5 @@
+const Joi = require('joi');
+
 function validateRegister(user) {
     const schema = Joi.object({
         user_name: Joi.string().min(3).max(100).required(),
