@@ -21,5 +21,9 @@ module.exports = sequelize.define('users',
       allowNull: false,
       type: DataTypes.STRING
     }
+  },
+  {
+    createdAt: false,
+    updatedAt: false
   }
 );

@@ -1,4 +1,4 @@
-const User = require('../models/user'); 
+const Users = require('../models/users'); 
 
 const registrationController = (req, res, next) => {
     const body = req.body;
@@ -10,7 +10,7 @@ const registrationController = (req, res, next) => {
         });
     }
 
-    const newUser = User.create({
+    const newUser = Users.create({
         user_name: body.user_name,
         email: body.email,
         password: body.password
@@ -28,3 +28,5 @@ const registrationController = (req, res, next) => {
         message: newUser
     });
 }
+
+module.exports = registrationController;
