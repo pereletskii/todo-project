@@ -1,7 +1,12 @@
 const Users = require('../models/users')
+
 const router = require('express').Router()
+
 const registrationController = require('../controllers/registrationController')
 const authController = require('../controllers/authController')
+
+const checkToken = require('../middlewares/authToken').checkToken
+
 const validateRegister = require('../services/validationService').validateRegister
 const validateLogin = require('../services/validationService').validateLogin
 
@@ -26,6 +31,12 @@ router.post('/registration', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     console.log(req.body)
+    console.log(req.headers['auth-token'])
+    const token = req.headers['auth-token'];
+    if (token && checkToken(token)) {
+        return res.status(400).send('User already logged in')
+    }
+   
     const { error } = validateLogin(req.body);
     if (error) {
         return res.status(400).send(error.details[0].message);
