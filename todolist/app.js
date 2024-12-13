@@ -1,11 +1,15 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const port = 3000;
 
 function baseInfo(req, res) {
     console.log(req.path, req.query);
+    console.log(req.body);
     res.send(`${req.method} response`);
 }
+
+app.use(bodyParser.json());
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
