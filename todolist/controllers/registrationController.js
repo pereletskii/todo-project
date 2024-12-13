@@ -1,6 +1,7 @@
 const Users = require('../models/users'); 
+const bcrypt = require('bcrypt');
 
-const registrationController = (req, res, next) => {
+const registrationController = async (req, res, next) => {
     const body = req.body;
 
     if (!body.user_name || !body.email || !body.password) {
@@ -10,10 +11,14 @@ const registrationController = (req, res, next) => {
         });
     }
 
-    const newUser = Users.create({
+    salt = await bcrypt.genSalt(10);
+    pass = await bcrypt.hash(body.password, salt);
+
+    const newUser = await Users.create({
         user_name: body.user_name,
         email: body.email,
-        password: body.password
+        password: pass,
+        salt: salt
     })
 
     if (!newUser) {
@@ -25,7 +30,7 @@ const registrationController = (req, res, next) => {
 
     return res.status(201).json({
         success: true,
-        message: newUser
+        message: newUser.toJSON()
     });
 }
 
