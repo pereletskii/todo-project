@@ -2,8 +2,8 @@ const Users = require('../models/users')
 const router = require('express').Router()
 const registrationController = require('../controllers/registrationController')
 const authController = require('../controllers/authController')
-const validateRegister = require('../services/validation').validateRegister
-const validateLogin = require('../services/validation').validateLogin
+const validateRegister = require('../services/validationService').validateRegister
+const validateLogin = require('../services/validationService').validateLogin
 
 router.post('/registration', async (req, res) => {
     console.log(req.body)
