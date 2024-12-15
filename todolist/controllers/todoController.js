@@ -33,4 +33,9 @@ module.exports = class TodoController {
         })
         return list
     }
+
+    static async getTasks(req) {
+        let tasks = await Tasks.findAll({ where: { list_id: req.query.list_id } })
+        return tasks
+    }
 }

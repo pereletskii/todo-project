@@ -10,18 +10,33 @@ const validateLists = require('../services/validationService').validateLists
 router.use(authToken)
 
 router.get('/', async (req, res) => {
-    let lists = await TodoController.getLists(req)
-    
-    if (lists.length == 0) {
-        return res.status(204).json({
-            success: true,
-            message: 'No lists found'
-        })
+    if (req.query.list_id) {
+        let tasks = await TodoController.getTasks(req)
+        if (tasks.length == 0) {
+            return res.status(200).json({
+                success: true,
+                message: 'No tasks found'
+            })
+        } else {
+            return res.status(200).json({
+                success: true,
+                tasks
+            })
+        }
     } else {
-        return res.status(200).json({
-            success: true,
-            lists
-        })
+        let lists = await TodoController.getLists(req)
+    
+        if (lists.length == 0) {
+            return res.status(200).json({
+                success: true,
+                message: 'No lists found'
+            })
+        } else {
+            return res.status(200).json({
+                success: true,
+                lists
+            })
+        }
     }
 })
 
