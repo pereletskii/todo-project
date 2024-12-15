@@ -41,17 +41,35 @@ router.get('/', async (req, res) => {
 })
 
 router.put('/', async (req, res) => {
-    const { error } = validateLists(req.body);
-    if (error) {
-        return res.status(400).send(error.details[0].message);
+    if (req.query.list_id) {
+        return res.status(404).send()
+    } else {
+        const { error } = validateLists(req.body);
+        if (error) {
+            return res.status(400).send(error.details[0].message);
+        } else {
+            try {
+                await TodoController.updateList(req)
+                return res.status(204).send()
+            } catch (err) {
+                return res.status(400).json({ message: err.message })
+            }
+        }
+    }
+})
+
+router.delete('/', async (req, res) => {
+    if (req.query.task_id) {
+        res.status(204).send()
     } else {
         try {
-            await TodoController.updateList(req)
-            return res.status(204).send()
+            await TodoController.deleteList(req)
+            return res.status(205).send()
         } catch (err) {
             return res.status(400).json({ message: err.message })
         }
     }
+
 })
 
 router.post('/create-list', async (req, res) => {
