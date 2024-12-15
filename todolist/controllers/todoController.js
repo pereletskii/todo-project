@@ -47,4 +47,21 @@ module.exports = class TodoController {
         let tasks = await Tasks.findAll({ where: { list_id: req.query.list_id } })
         return tasks
     }
+
+    static nullForNothing(params) {
+        if (!params) {
+            return null
+        }
+        return params
+    }
+
+    static async createTask(req) {
+        let task = await Tasks.create({
+            name: req.body.name,
+            description: this.nullForNothing(req.body.description),
+            images: this.nullForNothing(req.body.images),
+            list_id: req.query.list_id
+        })
+        return task
+    }
 }
