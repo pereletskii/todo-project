@@ -1,3 +1,5 @@
+.env
+env_config.json
 # Logs
 logs
 *.log
@@ -128,3 +130,25 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# dependencies
+todolist-ui/node_modules
+todolist-ui/.pnp
+.pnp.js
+
+# testing
+todolist-ui//coverage
+
+# production
+todolist-ui//build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+todolist-ui/npm-debug.log*
+todolist-ui/yarn-debug.log*
+todolist-ui/yarn-error.log*

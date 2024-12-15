@@ -1,0 +1,17 @@
+{
+  "development": {
+    "username": "[pql username]",
+    "password": "[pql password]",
+    "database": "[pql database]",
+    "host": "[hostname]",
+    "dialect": "postgres"
+  },
+  "test": {
+
+  },
+  "production": {
+
+  },
+  "port": "[port]",
+  "jwt_access_token": "[access token]"
+}
