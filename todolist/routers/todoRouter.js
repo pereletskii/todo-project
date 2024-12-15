@@ -58,17 +58,12 @@ router.put('/', async (req, res) => {
 })
 
 router.delete('/', async (req, res) => {
-    if (req.query.task_id) {
-        res.status(204).send()
-    } else {
-        try {
-            await TodoController.deleteList(req)
-            return res.status(205).send()
-        } catch (err) {
-            return res.status(400).json({ message: err.message })
-        }
+    try {
+        await TodoController.deleteList(req)
+        return res.status(205).send()
+    } catch (err) {
+        return res.status(400).json({ message: err.message })
     }
-
 })
 
 router.get('/tasks', async (req, res) => {
@@ -105,11 +100,26 @@ router.post('/tasks', async (req, res) => {
 })
 
 router.put('/tasks', async (req, res) => {
-
+    const { error } = validateTasks(req.body);
+    if (error) {
+        return res.status(400).send(error.details[0].message);
+    } else {
+        try {
+            await TodoController.updateTask(req)
+            return res.status(204).send()
+        } catch (err) {
+            return res.status(400).json({ message: err.message })
+        }
+    }
 })
 
 router.delete('/tasks', async (req, res) => {
-
+    try {
+        await TodoController.deleteTask(req)
+        return res.status(205).send()
+    } catch (err) {
+        return res.status(400).json({ message: err.message })
+    }
 })
 
 module.exports = router

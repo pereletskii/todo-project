@@ -64,4 +64,27 @@ module.exports = class TodoController {
         })
         return task
     }
+
+    static async updateTask(req) {
+        let task = await Tasks.update({
+            name: req.body.name,
+            description: this.nullForNothing(req.body.description),
+            images: this.nullForNothing(req.body.images),
+            list_id: req.query.list_id
+        }, {
+            where: {
+                id: req.query.task_id
+            }
+        })
+        return task
+    }
+
+    static async deleteTask(req) {
+        let task = await Tasks.destroy({
+            where: {
+                id: req.query.task_id
+            }
+        })
+        return task
+    }
 }
