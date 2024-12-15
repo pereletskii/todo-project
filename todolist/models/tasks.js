@@ -25,5 +25,9 @@ module.exports = sequelize.define('tasks',
       allowNull: false,
       type: DataTypes.UUID
     }
+  },
+  {
+    createdAt: false,
+    updatedAt: false
   }
 );
