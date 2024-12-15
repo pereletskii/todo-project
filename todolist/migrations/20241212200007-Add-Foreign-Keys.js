@@ -2,7 +2,7 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up (queryInterface) {
     await queryInterface.addConstraint('lists', {
       type: 'foreign key',
       name: 'FK_lists_users',
@@ -11,7 +11,7 @@ module.exports = {
         table: 'users',
         field: 'id'
       },
-      onDelete: 'no action',
+      onDelete: 'cascade',
       onUpdate: 'no action'
     })
     await queryInterface.addConstraint('tasks', {
@@ -22,12 +22,12 @@ module.exports = {
         table: 'lists',
         field: 'id'
       },
-      onDelete: 'no action',
+      onDelete: 'cascade',
       onUpdate: 'no action' 
     })
   },
 
-  async down (queryInterface, Sequelize) {
+  async down (queryInterface) {
     await queryInterface.removeConstraint('lists', 'FK_lists_users');
     await queryInterface.removeConstraint('tasks', 'FK_tasks_lists');
   }
