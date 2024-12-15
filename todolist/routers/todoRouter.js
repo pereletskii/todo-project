@@ -31,7 +31,7 @@ router.put('/', async (req, res) => {
         return res.status(400).send(error.details[0].message);
     } else {
         try {
-            const list = await TodoController.updateList(req)
+            await TodoController.updateList(req)
             return res.status(204).send()
         } catch (err) {
             return res.status(400).json({ message: err.message })

@@ -28,7 +28,7 @@ module.exports = class TodoController {
             name: req.body.name
         }, {
             where: {
-                id: req.query.id
+                id: req.query.list_id
             }
         })
         return list
