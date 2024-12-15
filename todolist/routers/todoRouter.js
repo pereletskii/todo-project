@@ -25,6 +25,20 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.put('/', async (req, res) => {
+    const { error } = validateLists(req.body);
+    if (error) {
+        return res.status(400).send(error.details[0].message);
+    } else {
+        try {
+            const list = await TodoController.updateList(req)
+            return res.status(204).send()
+        } catch (err) {
+            return res.status(400).json({ message: err.message })
+        }
+    }
+})
+
 router.post('/create-list', async (req, res) => {
     const { error } = validateLists(req.body);
     if (error) {
@@ -34,7 +48,7 @@ router.post('/create-list', async (req, res) => {
             const list = await TodoController.createList(req)
             return res.status(201).json({
                 success: true,
-                message: list
+                list: list
             })
         } catch (err) {
             return res.status(400).json({ message: err.message })

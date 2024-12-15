@@ -22,4 +22,15 @@ module.exports = class TodoController {
         })
         return list
     }
+
+    static async updateList(req) {
+        let list = await Lists.update({
+            name: req.body.name
+        }, {
+            where: {
+                id: req.query.id
+            }
+        })
+        return list
+    }
 }
