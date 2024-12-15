@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const access_token = require('../env_config.json').jwt_access_token
 
 const checkToken = (token) => {
+     // TODO: add coockie decode
     return jwt.verify(token, access_token, (err, user_info) => {
         if (err) {
             return false
@@ -11,7 +12,7 @@ const checkToken = (token) => {
 }
 
 const authToken = (req, res, next) => {
-    const token = req.headers['auth-token'];
+    const token = req.headers['auth-token']; // TODO: change to cookie
     console.log('current_token: ', token)
 
     if (token == null) {
