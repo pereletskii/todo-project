@@ -17,5 +17,9 @@ module.exports = sequelize.define('lists',
       allowNull: false,
       type: DataTypes.UUID
     }
+  },
+  {
+    createdAt: false,
+    updatedAt: false
   }
 );
