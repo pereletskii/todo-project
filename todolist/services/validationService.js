@@ -22,3 +22,12 @@ module.exports.validateLists = (list) => {
     })
     return schema.validate(list)
 }
+
+module.exports.validateTasks = (task) => {
+    const schema = Joi.object({
+        name: Joi.string().min(1).max(100).required(),
+        description: Joi.string().min(1).max(255),
+        images: Joi.string().min(1).max(255)
+    })
+    return schema.validate(task)
+}
