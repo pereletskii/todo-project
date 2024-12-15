@@ -1,6 +1,13 @@
 const Lists = require('../models/lists')
 const Tasks = require('../models/tasks')
 
+function nullForNothing(params) {
+    if (!params) {
+        return null
+    }
+    return params
+}
+
 module.exports = class TodoController {
     static async getLists(req) {
         if (req.query.list_name) {
@@ -48,18 +55,11 @@ module.exports = class TodoController {
         return tasks
     }
 
-    static nullForNothing(params) {
-        if (!params) {
-            return null
-        }
-        return params
-    }
-
     static async createTask(req) {
         let task = await Tasks.create({
             name: req.body.name,
-            description: this.nullForNothing(req.body.description),
-            images: this.nullForNothing(req.body.images),
+            description: nullForNothing(req.body.description),
+            images: nullForNothing(req.body.images),
             list_id: req.query.list_id
         })
         return task
@@ -68,8 +68,8 @@ module.exports = class TodoController {
     static async updateTask(req) {
         let task = await Tasks.update({
             name: req.body.name,
-            description: this.nullForNothing(req.body.description),
-            images: this.nullForNothing(req.body.images),
+            description: nullForNothing(req.body.description),
+            images: nullForNothing(req.body.images),
             list_id: req.query.list_id
         }, {
             where: {
