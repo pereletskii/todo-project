@@ -31,8 +31,8 @@ router.post('/registration', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     console.log(req.body)
-    console.log(req.headers['auth-token'])
-    const token = req.headers['auth-token']; // TODO: change to cookie
+    console.log(req.cookies.authToken)
+    const token = req.cookies.authToken;
     if (token && checkToken(token)) {
         return res.status(400).send('User already logged in')
     }

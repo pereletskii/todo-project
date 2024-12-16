@@ -26,9 +26,9 @@ const authController = async (req, res, next) => {
                 user_name: user.user_name,
                 email: user.email
             });
-            // TODO: add cookie encode
+
             return res.status(202)
-                .header('auth-token', token) // TODO: change to cookie
+                .cookie('authToken', token, { httpOnly: true })
                 .json({
                     success: true,
                     message: {
