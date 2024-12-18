@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    container_name: todolist-postgres
+    restart: always
+    shm_size: 128mb
+    env_file:
+      - .env
+    ports:
+      - 5432:5432
+  
+  app:
+    build: ./todolist
+    container_name: todolist-app
+    restart: always
+    ports:
+      - 3000:3000
+    links:
+      - db
