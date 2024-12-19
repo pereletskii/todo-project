@@ -88,7 +88,7 @@ After docker containers are up and working properly
 Run
 
 ```bash
-docker exec -it todolist-app npx sequelize-cli db:migrate --config env_config.json
+docker exec -it todolist-app npx sequelize-cli db:migrate --env production --config env_config.json
 ```
 
 This will create all necessary database tables and relations for proper server work
