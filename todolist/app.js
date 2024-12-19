@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 app.use(cookieParser())
 
 const allAuthRouter = require('./routers/allAuthRouter');
-app.use('/enter', allAuthRouter);
+app.use('/user', allAuthRouter);
 
 const todoRouter = require('./routers/todoRouter');
 app.use('/todo', todoRouter);
@@ -19,4 +19,5 @@ app.get('/', (req, res) => {
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
+    console.log('ENV: ', process.env.NODE_ENV);
 })
