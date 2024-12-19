@@ -91,7 +91,7 @@ Run
 docker exec -it todolist-app npx sequelize-cli db:migrate --config env_config.json
 ```
 
-This will create all necessary database tables and links for proper server work
+This will create all necessary database tables and relations for proper server work
 
 ## API
 
