@@ -71,6 +71,12 @@ It should look like this
 
 You can generate your own JWT access token [here](https://jwtsecret.com/)
 
+After you created configs, copy env_config.json to migrations directory:
+
+```bash
+cp ./todolist/env_config.json ./todolist/migrations/env_config.json
+```
+
 ### Docker
 
 After you set all configurations
