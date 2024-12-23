@@ -97,4 +97,4 @@ This will create all necessary database tables and relations for proper server w
 
 All requests listened on address `0.0.0.0:3000`
 
-Swagger UI will be added soon
+Swagger UI available at `0.0.0.0:3000/api-docs`
