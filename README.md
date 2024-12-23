@@ -71,6 +71,12 @@ It should look like this
 
 You can generate your own JWT access token [here](https://jwtsecret.com/)
 
+After you created configs, copy env_config.json to migrations directory:
+
+```bash
+cp ./todolist/env_config.json ./todolist/migrations/env_config.json
+```
+
 ### Docker
 
 After you set all configurations
@@ -80,18 +86,6 @@ Run
 ```bash
 docker compose up
 ```
-
-Docker will create postgresql container with previously mentioned user and also create database named after this user
-
-After docker containers are up and working properly
-
-Run
-
-```bash
-docker exec -it todolist-app npx sequelize-cli db:migrate --env production --config env_config.json
-```
-
-This will create all necessary database tables and relations for proper server work
 
 ## API
 
